@@ -1,1 +1,35 @@
-<%= render 'navtab', users: @users %>
+<%= render 'navtab', users: @user %>
+  <p>キーワード検索</p>
+  <%= form_tag(books_path, :method => 'get' ) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'Search', :name => nil %>
+  <% end %>
+  <br>
+
+    <% @books.each do |book| %>
+      <% image = book.image %>
+      <% if image.blank? %>
+        <% image = "/assets/book.jpg" %>
+      <% end %>
+        <img src=<%=image%> align="left" width="400" height="300">
+        <img class="mr-2 rounded" src="<%= gravatar_url(book.user, { size: 50 }) %>" alt="">
+         <%= book.user.name %>
+        <br>
+         <%= render 'relationships/follow_button', user: book.user %>
+         <br>
+         <br>
+        タイトル：<%= book.name %>
+        <br>
+        著者:<%= book.author %>
+        <br>
+        感想
+        <br>
+        <textarea name="kanso" rows="2" cols="40" readonly><%= book.content %></textarea>
+        <br>
+        <%= render "favorites/favorite_button" ,book: book %>
+        <%= link_to "edit", edit_book_path(book_id: book.id),class: 'btn btn-success btn-sm' %>
+        <%= link_to "Delete", user_path(book_id: book.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+        <br clear="left">
+        <br>
+    <% end %>
+    <%= paginate @books %>

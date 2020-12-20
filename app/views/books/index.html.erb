@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'users/navtab' ,users: @user%>
+    <p>キーワード検索</p>
+  <%= form_tag(books_path, :method => 'get' ) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'Search', :name => nil %>
+  <% end %>
+  <br>
+
+    <% @books.each do |book| %>
+      <% image = book.image %>
+      <% if image.blank? %>
+        <% image = "/assets/book2.jpg" %>
+      <% end %>
+        <img src=<%=image%> align="left">
+        <span class="boxcontiner">
+        <img class="mr-2 rounded" src="<%= gravatar_url(book.user, { size: 50 }) %>" alt="">
+        <%= book.user.name %>
+        <br>
+         <%= render 'relationships/follow_button', user: book.user %>
+         </span>
+         <br>
+        タイトル：<%= book.name %>
+        <br>
+        著者:<%= book.author %>
+        <br>
+        感想
+        <br>
+        <textarea name="kanso" rows="2" cols="40" readonly><%= book.content %></textarea>
+        <br>
+        <%= render "favorites/favorite_button" ,book: book %>
+        <br clear="left">
+        <br>
+    <% end %>
+   <%= paginate @books %>
+
+

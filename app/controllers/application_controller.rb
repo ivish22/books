@@ -9,4 +9,11 @@ class ApplicationController < ActionController::Base
             redirect_to login_url
         end
     end
+    
+    def counts(user)
+        @count_microposts = user.books.count
+        @count_followings = user.followings.count
+        @count_followers = user.followers.count
+        @count_favarites = user.darling.count
+    end
 end

@@ -1,0 +1,16 @@
+
+<h1>ユーザー一覧</h1>
+<ul class="list-unstyled">
+  <div class="boxcontiner">
+    <% @user.each do |user| %>
+      <li class="media">
+        <img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div>
+            <%= user.name %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    </div>
+  </ul>

@@ -30,5 +30,15 @@
     line-height: 200px;
 }
 .margin{
-    height: 340px;
+    height: 150px;
+}
+input[type="content"] {
+        width: 300px;
+        height: 500px;
+}
+textarea {
+  resize: none;
+}
+.boxcontiner{
+    display:flex;
 }

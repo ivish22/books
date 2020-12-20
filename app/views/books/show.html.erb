@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<%= render 'users/navtab', users: @user %>
+<p>
+  <strong>Name:</strong>
+  <%= @book.name %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @book.content %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @book.image.url if @book.image? %>
+</p>
+
