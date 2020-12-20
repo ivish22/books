@@ -9,5 +9,32 @@
    <font size="5">本に対する感想を投稿しよう</font>
   </div>
 </div>
- 
+ <br>
+ <p>新着投稿</p>
+ <div class="boxcontiner">
+  <aside class="col-sm-6">
+ <% @books.first(2).each do |book| %>
+      <% image = book.image %>
+      <% if image.blank? %>
+        <% image = "/assets/book2.jpg" %>
+      <% end %>
+        <img src=<%=image%> align="left" width="200" height="200">
+         <%= book.user.name %>
+        <img class="mr-2 rounded" src="<%= gravatar_url(book.user, { size: 50 }) %>" alt="">
+        <br>
+         <br>
+        タイトル：<%= book.name %>
+        <br>
+        著者:<%= book.author %>
+        <br>
+        感想
+        <br>
+        <textarea name="kanso" rows="2" cols="40" readonly><%= book.content %></textarea>
+        <br>
+        <br clear="left">
+        <br>
+    <% end %>
+    </aside>
+   
+    </div>
      
